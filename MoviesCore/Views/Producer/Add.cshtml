@@ -1,0 +1,33 @@
+﻿@model EntityLayer.Concrete.Producer
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <form class="form-group" method="post">
+            <label><b>Producer Photo</b></label>
+            @Html.TextBoxFor(x => x.ProducerPhoto, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ProducerPhoto, "", new { @class = "text-danger" })
+            <div class="form-group text-center">
+                <img class="rounded-circle" src="@Html.DisplayTextFor(x=>x.ProducerPhoto)" style="width:150px;height:150px" alt="" />
+            </div>
+            <br />
+            <label><b>Producer Name</b></label>
+            @Html.TextBoxFor(x => x.ProducerName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ProducerName, "", new { @class = "text-danger" })
+            <br />
+            <label><b>Producer Biyography</b></label>
+            @Html.TextAreaFor(x => x.ProducerBio, 10, 3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ProducerBio, "", new { @class = "text-danger" })
+            <br />
+            <div class="form-group">
+                <button class="btn btn-outline-success float-right">Save</button>
+                <a class="btn btn-outline-danger" asp-action="Index">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>

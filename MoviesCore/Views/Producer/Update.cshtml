@@ -1,0 +1,39 @@
+﻿@model EntityLayer.Concrete.Producer
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        @using (Html.BeginForm("Update", "Producer", FormMethod.Post))
+        {
+
+            @Html.HiddenFor(x => x.ProducerId, new { @class = "form-control" })
+            <br />
+            <label><b>Producer Photo</b></label>
+            @Html.TextBoxFor(x => x.ProducerPhoto, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ProducerPhoto, "", new { @class = "text-danger" })
+            <br />
+            <div class="form-group text-center">
+                <img class="rounded-circle" src="@Html.DisplayTextFor(x=>x.ProducerPhoto)" style="width:150px;height:150px" alt="" />
+            </div>
+            <br />
+            <label><b>Producer Name</b></label>
+            @Html.TextBoxFor(x => x.ProducerName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ProducerName, "", new { @class = "text-danger" })
+
+            <br />
+            <label><b>Producer Bio</b></label>
+            @Html.TextAreaFor(x => x.ProducerBio, 10, 3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ProducerBio, "", new { @class = "text-danger" })
+            <br />
+            <div class="form-group">
+                <button class="btn btn-outline-warning float-right">Update</button>
+                <a asp-action="Index" class="btn btn-outline-info">Cancel</a>
+            </div>
+
+        }
+    </div>
+</div>
+

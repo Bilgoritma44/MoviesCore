@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.Actor
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Actor Details Page</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="form-group text-center">
+                    <img class="rounded-circle" src="@Html.DisplayTextFor(x=>x.ActorPhoto)" style="width:150px;height:150px" alt="" />
+                </div>
+                <div class="form-group">
+                    <label><b>Actor Name</b></label>
+                    @Html.TextBoxFor(x => x.ActorName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label><b>Actor Biography</b></label>
+                    @Html.TextAreaFor(x => x.ActorBio, 10, 3, new { @class = "form-control" })
+                </div>
+                @*<div class="form-group">
+                    <a class="btn btn-outline-success float-lg-right" asp-action="Index">Back</a>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+

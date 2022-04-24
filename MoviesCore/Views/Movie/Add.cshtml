@@ -1,0 +1,50 @@
+﻿@model EntityLayer.Concrete.Movie
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <form class="form-group" method="post">
+            <label><b>Movie Name</b></label>
+            @Html.TextBoxFor(x => x.MovieName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.MovieName, "", new { @class = "text-danger" })
+            <br />
+            <label><b>Movie Category</b></label>
+            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v1, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.CategoryId, "", new { @class = "text-danger" })
+            <br />
+            <label><b>Movie Cinema</b></label>
+            @Html.DropDownListFor(x => x.CinemaId, (List<SelectListItem>)ViewBag.v2, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.CinemaId, "", new { @class = "text-danger" })
+            <br />
+            <label><b>Movie Actor</b></label>
+            @Html.DropDownListFor(x => x.ActorId, (List<SelectListItem>)ViewBag.v4, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ActorId, "", new { @class = "text-danger" })
+            <br />
+            <label><b>Movie Producer</b></label>
+            @Html.DropDownListFor(x => x.ProducerId, (List<SelectListItem>)ViewBag.v3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ProducerId, "", new { @class = "text-danger" })
+            <br />
+            <label><b>Movie Status</b></label>
+            @Html.TextBoxFor(x => x.MovieStatus, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.MovieStatus, "", new { @class = "text-danger" })
+            <br />
+            <label><b>Movie Image</b></label>
+            @Html.TextBoxFor(x => x.MovieImageUrl, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.MovieImageUrl, "", new { @class = "text-danger" })
+            <br />
+            <label><b>Movie Description</b></label>
+            @Html.TextAreaFor(x => x.MovieDescription,10,3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.MovieDescription, "", new { @class = "text-danger" })
+            <br />
+            <div class="form-group">
+                <button class="btn btn-outline-success float-right">Create</button>
+                <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+            </div>
+
+        </form>
+    </div>
+
+</div>

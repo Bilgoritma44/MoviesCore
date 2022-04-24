@@ -1,0 +1,89 @@
+﻿@using EntityLayer.Concrete
+@model List<Movie> 
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        @foreach (var x in Model)
+        {
+        <div class="card md-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @x.MovieName
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@x.MovieImageUrl" width="100%" alt="@x.MovieName" />
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        @*<p class="card-text">@x.MovieDescription</p>*@
+                        <p class="card-text">
+                            <b>Cinema: </b>
+                            <a href="/Cinema/Detail/@x.Cinema.CinemaId">
+                                @x.Cinema.CinemaName
+                            </a>
+                        </p>
+                        <p class="card-text">
+                            <b>Producer: </b>
+                            <a href="/Producer/Detail/@x.ProducerId">
+                                @x.Producer.ProducerName
+                            </a>
+                        </p>
+                        <p class="card-text"> <b>Category: </b>@x.Category.CategoryName</p>
+                        <p class="card-text"> <b>Create Date: </b>@(((DateTime)x.MovieCreateDate).ToString("dd-MMM-yyyy"))</p>
+                        <p class="card-text"> <b>Status: </b><span class="badge bg-success text-white">@x.MovieStatus</span></p>
+                        <p class="card-text">
+                            <b>Actor: </b>
+                            <hr />
+                            <div class="row">
+                                @foreach (var n in Model)
+                                {
+                                    <div class="column text-center">
+                                        <img class="border-info rounded-circle" src="@n.Actor.ActorPhoto" style="max-width: 75px" />
+                                        <br />
+                                        <a asp-controller="Actor" asp-action="Detail" asp-route-id="@n.ActorId">@n.Actor.ActorName</a>
+                                    </div>
+                                }
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer">
+                        <p class="card-text">
+                            <h2>Filmin Konusu</h2>
+                            <br/>
+                            @x.MovieDescription
+                        </p>
+                    </div>
+                </div> 
+                <div class="col-md-12">
+                    <div class="card-footer">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" href="/Movie/Index">
+                                Back to List
+                            </a>
+                            @if (User.Identity.IsAuthenticated && ViewBag.v2 == "Admin")
+                            { 
+                                <a class="btn btn-outline-info" href="/Movie/Update/@x.MovieId">
+                                    Update
+                                </a>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+

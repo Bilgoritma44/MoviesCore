@@ -1,0 +1,82 @@
+﻿@using EntityLayer.Concrete
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Movie>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+@*<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
+<div class="row">
+    @foreach (var x in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width:540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-danger">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @x.MovieName
+                                    @if (User.Identity.IsAuthenticated && ViewBag.v2 == "Admin")
+                                    {
+                                        <a class="text-white float-right" href="/Movie/Delete/@x.MovieId"><i class="bi bi-pencil-square"></i></a>
+                                        
+                                    }
+
+                                </h5>
+
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@x.MovieImageUrl" width="100%" alt="@x.MovieName" />
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@x.MovieDescription.Substring(0, x.MovieDescription.Substring(0, 20).LastIndexOf(" "))...</p>
+                            <p class="card-text"><b>Cinema: </b>@x.Cinema.CinemaName</p>
+                            <p class="card-text"><b>Category: </b>@x.Category.CategoryName</p>
+                            <p class="card-text"><b>Date: </b>@(((DateTime)x.MovieCreateDate).ToString("dd-MMM-yyyy"))</p>
+                            <p class="card-text"><b>Status:</b><span class="badge bg-success text-white">@x.MovieStatus</span></p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" href="/Movie/Detail/@x.MovieId">
+                                    <i class="bi bi-eye-fill"></i>Show Details
+                                </a>
+                                
+                            </p>
+                            @*<p class="card-text">
+                                <a class="btn btn-outline-primary" href="/Movie/Detail/@x.MovieId">
+                                    <i class="bi bi-eye-fill"></i>Show Details
+                                </a>
+                                
+                            </p>*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    @if (User.Identity.IsAuthenticated && ViewBag.v2 == "Admin")
+    {
+        <div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
+            <a href="/Movie/Add" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Add New
+            </a>
+        </div>
+    }
+</div>
+  @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}))
+
+

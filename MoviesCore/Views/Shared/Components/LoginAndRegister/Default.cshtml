@@ -1,0 +1,45 @@
+﻿
+@if (!User.Identity.IsAuthenticated)
+{
+    <a class="btn btn-outline-success my-2 my-sm-0" href="/Login/Index">
+        <i class="bi bi-box-arrow-in-right"></i> Log in
+    </a>
+    <span style="padding: 5px;"></span>
+
+    <a class="btn btn-outline-primary my-2 my-sm-0" href="/Register/Add">
+        <i class="bi bi-person-plus"></i> Register
+    </a>
+}
+else
+{
+
+    @*User profile section*@
+    <div class="dropdown">
+        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown"
+                aria-expanded="false">
+            <i class="bi bi-person-badge"></i> Hello @ViewBag.v1
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="profile-btn">
+            <li>
+                <a class="dropdown-item" href="/User/Update/@ViewBag.v3">
+                    <i class="bi bi-list"></i> Profil
+                </a>
+            </li>
+
+            @if (User.Identity.IsAuthenticated && ViewBag.v2=="Admin")
+            {
+                <li>
+                    <a class="dropdown-item" asp-controller="User" asp-action="Index">
+                        <i class="bi bi-people"></i> Users
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+    <span style="padding: 5px;"></span>
+    <a asp-controller="Login" asp-action="LogOut">
+        <button class="btn btn-outline-danger my-2 my-sm-0">
+            <i class="bi bi-box-arrow-in-right"></i> Log out
+        </button>
+    </a>
+}

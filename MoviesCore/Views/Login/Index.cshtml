@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.ApplicationUser
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <h1>Login</h1>
+        <form class="form-group" method="post">
+
+            <label><b>E-mail</b></label>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            <br />
+            <label><b>Password</b></label>
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+            <br />
+            <div class="form-group">
+                <button class="btn btn-outline-success float-left">Login</button>
+                <a class="btn btn-outline-secondary float-right" asp-controller="Movie" asp-action="Index">Cancel</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+

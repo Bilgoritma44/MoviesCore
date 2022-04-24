@@ -1,0 +1,29 @@
+﻿@model EntityLayer.Concrete.Cinema
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <form class="form-group" method="post">
+            <label><b>Cinema Logo</b></label>
+            @Html.TextBoxFor(x => x.CinemaLogo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.CinemaLogo, " ", new { @class = "text-danger" })
+            <br />
+            <label><b>Cinema Name</b></label>
+            @Html.TextBoxFor(x => x.CinemaName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.CinemaName, " ", new { @class = "text-danger" })
+
+            <br />
+            <label><b>Cinema Description</b></label>
+            @Html.TextAreaFor(x => x.CinemaDescription, 10, 3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.CinemaDescription, " ", new { @class = "text-danger" })
+            <br />
+            <button class="btn btn-outline-info float-right">Save</button>
+            <a class="btn btn-outline-danger" asp-action="Index">Cancel</a>
+
+        </form>
+    </div>
+</div>
+

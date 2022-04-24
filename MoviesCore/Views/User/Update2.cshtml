@@ -1,0 +1,39 @@
+﻿@model EntityLayer.Concrete.ApplicationUser
+@{
+    ViewData["Title"] = "Update2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        @using (Html.BeginForm("Update2", "User", FormMethod.Post))
+        {
+
+            @Html.HiddenFor(x => x.UserId, new { @class = "form-control" })
+            <br />
+            <label><b>First Name</b></label>
+            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "text-danger" })
+            <br /><label><b>Last Name</b></label>
+            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "text-danger" })
+            <br /><label><b>User Name</b></label>
+            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.UserName, "", new { @class = "text-danger" })
+            <br /><label><b>E-mail</b></label>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+            <br /><label><b>Password</b></label>
+            @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+            <br /><label><b>User Role</b></label>
+            @Html.TextBoxFor(x => x.UserRole, new { @class = "form-control" })
+            <br />
+            <div class="form-group">
+                <button class="btn btn-outline-warning float-right">Update</button>
+                <a class="btn btn-outline-secondary" href="/User/Index">Cancel</a>
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+﻿@using EntityLayer.Concrete
+@model List<ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>User List</h2>
+    <table class="table table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>E-mail</th>
+            <th>Password</th>
+            <th>User Role</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.UserId</td>
+                <td>@x.FirstName</td>
+                <td>@x.LastName</td>
+                <td>@x.UserName</td>
+                <td>@x.Email</td>
+                <td>@x.Password</td>
+                <td>@x.UserRole</td>
+                <td class="align-middle">
+                    <a class="btn btn-outline-primary" href="/User/Update2/@x.UserId"><i class="bi bi-pencil-square"></i>Edit </a>
+                    <a class="btn btn-danger text-white" href="/User/Delete/@x.UserId" id="DeleteBtn" onclick="return confirm('Silmek istediğinize emin misiniz?');"><i class="bi bi-trash"></i>Delete </a>
+                </td>
+            </tr>
+
+        }
+        <div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
+            <a href="/User/Add" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Add New
+            </a>
+        </div>
+    </table>
+</div>
+
